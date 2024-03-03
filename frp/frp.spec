@@ -41,16 +41,16 @@ install -m 0644 -v  conf/frpc.toml      %{buildroot}%{_sysconfdir}/%{name}/
 install -m 0644 -v  conf/frps.toml      %{buildroot}%{_sysconfdir}/%{name}/
 
 %post
-%systemd_post   %{S:1}
-%systemd_post   %{S:2}
+%systemd_post   frpc.service
+%systemd_post   frps.service
 
 %preun
-%systemd_preun  %{S:1}
-%systemd_preun  %{S:2}
+%systemd_preun  frpc.service
+%systemd_preun  frps.service
 
 %postun
-%systemd_postun %{S:1}
-%systemd_postun %{S:2}
+%systemd_postun frpc.service
+%systemd_postun frps.service
 
 %files
 %license LICENSE
