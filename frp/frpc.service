@@ -1,0 +1,11 @@
+[Unit]
+Description=frp client daemon
+After=network.target
+	
+[Service]
+Type=exec
+Restart=on-abort
+ExecStart=/usr/bin/frpc -c /etc/frp/frpc.toml
+	
+[Install]
+WantedBy=default.target
