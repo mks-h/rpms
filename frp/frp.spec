@@ -1,9 +1,8 @@
 %define debug_package %{nil}
-%global build_timestamp %(date +"%Y%m%d")
 
 Name:           frp
 Version:        0.54.0
-Release:        %autorelease
+Release:        2%{?dist}
 Summary:        A fast reverse proxy
 
 License:        Apache-2.0
@@ -41,20 +40,17 @@ install -m 0644 -v  conf/frpc.toml      %{buildroot}%{_sysconfdir}/%{name}/
 install -m 0644 -v  conf/frps.toml      %{buildroot}%{_sysconfdir}/%{name}/
 
 %post
-%systemd_post   frpc.service
-%systemd_post   frps.service
+%systemd_post                   frpc.service frps.service
 
 %preun
-%systemd_preun  frpc.service
-%systemd_preun  frps.service
+%systemd_preun                  frpc.service frps.service
 
 %postun
-%systemd_postun frpc.service
-%systemd_postun frps.service
+%systemd_postun_with_restart    frpc.service frps.service
 
 %files
-%license LICENSE
-%doc doc README.md README_zh.md Release.md
+%license    LICENSE
+%doc        doc README.md README_zh.md Release.md
 %config(noreplace) %{_sysconfdir}/%{name}/frpc.toml
 %config(noreplace) %{_sysconfdir}/%{name}/frps.toml
 %{_bindir}/frpc
