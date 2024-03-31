@@ -2,7 +2,7 @@
 %global build_timestamp %(date +"%Y%m%d")
 
 Name:           mihomo
-Version:        1.18.1
+Version:        1.18.3
 Release:        %autorelease
 Summary:        Another Mihomo Kernel.
 
