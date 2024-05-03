@@ -15,7 +15,21 @@ BuildRequires:  systemd-rpm-macros
 BuildRequires:  golang
 BuildRequires:  git
 
+%package -n frpc
+Summary:        A fast reverse proxy client
+
+%package -n frps
+Summary:        A fast reverse proxy server
+
 %description
+frp is a fast reverse proxy that allows you to expose a local server located
+behind a NAT or firewall to the Internet.
+
+%description -n frpc
+frp is a fast reverse proxy that allows you to expose a local server located
+behind a NAT or firewall to the Internet.
+
+%description -n frps
 frp is a fast reverse proxy that allows you to expose a local server located
 behind a NAT or firewall to the Internet.
 
@@ -49,14 +63,18 @@ install -m 0644 -v  conf/frps.toml      %{buildroot}%{_sysconfdir}/%{name}/
 %postun
 %systemd_postun_with_restart    frpc.service frps.service
 
-%files
+%files -n frpc
 %license    LICENSE
 %doc        doc README.md README_zh.md Release.md
 %config(noreplace) %{_sysconfdir}/%{name}/frpc.toml
-%config(noreplace) %{_sysconfdir}/%{name}/frps.toml
 %{_bindir}/frpc
-%{_bindir}/frps
 %{_unitdir}/frpc.service
+
+%files -n frps
+%license    LICENSE
+%doc        doc README.md README_zh.md Release.md
+%config(noreplace) %{_sysconfdir}/%{name}/frps.toml
+%{_bindir}/frps
 %{_unitdir}/frps.service
 
 %changelog
