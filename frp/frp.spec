@@ -1,8 +1,8 @@
 %define debug_package %{nil}
 
 Name:           frp
-Version:        0.54.0
-Release:        2%{?dist}
+Version:        0.57.0
+Release:        1%{?dist}
 Summary:        A fast reverse proxy
 
 License:        Apache-2.0
