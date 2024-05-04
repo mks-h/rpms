@@ -9,8 +9,9 @@ RUN dnf builddep --spec SPECS/frp.spec
 
 RUN dnf remove golang
 RUN rm -rf /usr/local/go
-ADD https://go.dev/dl/go1.22.2.linux-amd64.tar.gz /root/
-RUN tar -C /usr/local -xzf /root/go1.22.2.linux-amd64.tar.gz
+ARG BUILDARCH
+ADD https://go.dev/dl/go1.22.2.linux-$BUILDARCH.tar.gz /root/
+RUN tar -C /usr/local -xzf /root/go1.22.2.linux-$BUILDARCH.tar.gz
 ENV PATH=$PATH:/usr/local/go/bin
 
 RUN spectool -gR SPECS/frp.spec
